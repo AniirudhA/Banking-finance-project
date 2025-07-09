@@ -1,9 +1,7 @@
 pipeline {
     agent any
 
-    tools {
-        maven 'M2_HOME'
-    }
+
 
     stages {
         stage('Git Checkout') {
@@ -33,7 +31,7 @@ pipeline {
       steps 
         {
           echo 'This is to build Docker Image'
-          sh 'docker build -t aniirudh/bankandfin-project .'
+          sh 'docker build -t aniirudh/myjavaapp:latest .'
         }
       }
      stage('Logging to DOCKER HUB') 
@@ -47,12 +45,7 @@ pipeline {
           }
         }
     }
-     stage('Deploy to Kubernetes') {
-            steps {
-                    sh 'kubectl apply -f /k8s/deployment.yml'
-                    sh 'kubectl apply -f /k8s/service.yml'
-                  }
-        }
+     
    
    
     }
